@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 interface FormProps {
@@ -12,6 +12,13 @@ const FormComponent: React.FC<FormProps> = ({ onSearch }) => {
     e.preventDefault();
     onSearch(tags);
   };
+
+  useEffect(() => {
+    if (tags === "") {
+      onSearch(tags);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tags]);
 
   return (
     <div className="sticky-top bg-white">
